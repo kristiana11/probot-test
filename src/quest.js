@@ -9,7 +9,6 @@ async function acceptQuest(db, user, quest) {
         const quests = JSON.parse(fs.readFileSync(questFilePath, 'utf8'));
         if (quest in quests) {
             const user_data = await db.downloadUserData(user);
-
             if (!user_data.user_data.accepted) {
                 user_data.user_data.accepted = {};
             }
@@ -31,7 +30,6 @@ async function acceptQuest(db, user, quest) {
             return false;
         }
     } catch (error) {
-        console.error('Error accepting quest:', error);
         return false;
     }
 }

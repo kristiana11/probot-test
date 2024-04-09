@@ -38,12 +38,11 @@ export default (app) => {
     await db.connect();
     // detect command
     if(command) {
-      console.log(command.action);
       switch (command.action){
         case 'accept':
           // accept
           status = await questFunctions.acceptQuest(db, user, command.argument);
-          if(status){ response = 'Quest ' + command.argument + 'successfully accepted!'}
+          if(status){ response = 'Quest ' + command.argument + ' successfully accepted!'}
           else{ response = 'Quest failed to accept, please ensure you are not already on a quest.' }
           break;
         case 'drop':
@@ -84,12 +83,11 @@ export default (app) => {
 
 // match and break down / command 
 function parseCommand(comment) {
-  console.log(comment);
   const  regex = /^(\/(new_user|accept|drop|display))(\s.*)?$/;
   const match = comment.match(regex);
   if (match) {
     const action = match[2];
-    const argument = match[3];
+    const argument = match[3].trim();
     return {action, argument};
   }
   const action = '';
