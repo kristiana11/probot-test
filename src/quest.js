@@ -3,7 +3,7 @@ const questFilePath = './src/available-quests.json';
 
 
 
-export async function acceptQuest(db, user, quest) {
+async function acceptQuest(db, user, quest) {
 
     try {
         const quests = JSON.parse(fs.readFileSync(questFilePath, 'utf8'));
@@ -36,7 +36,7 @@ export async function acceptQuest(db, user, quest) {
     }
 }
 
-export async function removeQuest(db, user) {
+async function removeQuest(db, user) {
     try {
         const user_data = await db.downloadUserData(user);
         if (user_data.user_data.accepted) {
@@ -52,7 +52,7 @@ export async function removeQuest(db, user) {
     }
 }
 
-export async function completeQuest(db, user, quest) {
+async function completeQuest(db, user, quest) {
     try {
         const user_data = await db.downloadUserData(user);
 
@@ -76,7 +76,7 @@ export async function completeQuest(db, user, quest) {
     }
 }
 
-export async function completeTask(db, user, quest, task) {
+async function completeTask(db, user, quest, task) {
     try {
         const quests = JSON.parse(fs.readFileSync(questFilePath, 'utf8'));
         const user_data = await db.downloadUserData(user);
@@ -97,7 +97,7 @@ export async function completeTask(db, user, quest, task) {
     }
 }
 
-export async function displayQuests(db, user) {
+async function displayQuests(db, user) {
     try {
         const quests = JSON.parse(fs.readFileSync(questFilePath, 'utf8'));
         const user_data = await db.downloadUserData(user);
@@ -121,3 +121,10 @@ export async function displayQuests(db, user) {
     }
 }
 
+export const questFunctions = {
+    acceptQuest,
+    removeQuest,
+    completeQuest,
+    completeTask,
+    displayQuests
+  };

@@ -41,12 +41,14 @@ export class MongoDB {
     };
     try {
       await this.collection.insertOne(newUser);
+      return true
     } catch (error) {
       if (error.code === 11000) {
         console.log('User already exists!');
       } else {
         console.error('Error creating user:', error);
       }
+      return false;
     }
   }
 
