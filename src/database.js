@@ -1,0 +1,71 @@
+import { MongoClient } from 'mongodb';
+
+import dotenv from 'dotenv';
+dotenv.config();
+
+export class MongoDB {
+  constructor() {
+    this.uri = process.env.URI;
+    this.client = new MongoClient(this.uri);  
+    this.dbName = 'gamification';
+    this.collectionName = 'user_data';
+  }
+
+  async connect() {
+    try {
+      this.db = this.client.db(this.dbName);
+      this.collection = this.db.collection(this.collectionName);
+      console.log('Connected to MongoDB');
+    } catch (error) {
+      console.error('Error connecting to MongoDB:', error);
+    }
+  }
+
+  async closeConnection() {
+    try {
+      await this.client.close();
+      console.log('Connection to MongoDB closed');
+    } catch (error) {
+      console.error('Error closing MongoDB connection:', error);
+    }
+  }
+
+  async createUser(userName) {
+    console.log(`Creating user: ${userName}.`);
+    const newUser = {
+      _id: userName,
+      user_data: {
+        xp: 0,
+        points: 0
+      }
+    };
+    try {
+      await this.collection.insertOne(newUser);
+    } catch (error) {
+      if (error.code === 11000) {
+        console.log('User already exists!');
+      } else {
+        console.error('Error creating user:', error);
+      }
+    }
+  }
+
+  async updateData(userData) {
+    const filterQuery = { _id: userData._id };
+    const updateQuery = { $set: userData };
+    try {
+      await this.collection.updateOne(filterQuery, updateQuery, { upsert: true });
+    } catch (error) {
+      console.error('Error updating user data:', error);
+    }
+  }
+
+  async downloadUserData(user) {
+    try {
+      const userDocument = await this.collection.findOne({ _id: user });
+      return userDocument;
+    } catch (error) {
+      console.error('Error downloading user data:', error);
+    }
+  }
+}
