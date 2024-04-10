@@ -1,6 +1,6 @@
-# my-first-app
+# Gamification Bot
 
-> A GitHub App built with [Probot](https://github.com/probot/probot) that A Hello world app
+> A GitHub App built with [Probot](https://github.com/probot/probot) that aims to gamify the GitHub Experience
 
 ## Setup
 
@@ -11,6 +11,8 @@ npm install
 # Run the bot
 npm start
 ```
+You will need to include a mongoDB URI="link" and DB_NAME="database" in the .env file that the initial run will generate after donig the github app setup.
+Set up script coming soon!
 
 ## Docker
 
