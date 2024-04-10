@@ -110,7 +110,7 @@ async function displayQuests(db, user) {
                     response += `${questId}: ${questData.metadata.title}\n`;
                 }
             }
-            
+            // TODO: implement check for accepted quests and respond with status
             return response + 'Please respond with /accept <Q# --> corresponding quest number>';
         }
     } catch (error) {

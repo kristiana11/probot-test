@@ -15,7 +15,7 @@ export class MongoDB {
     try {
       this.db = this.client.db(this.dbName);
       this.collection = this.db.collection(this.collectionName);
-      console.log('Connected to MongoDB');
+      console.log("Mongo DB successfully connected. ");
     } catch (error) {
       console.error('Error connecting to MongoDB:', error);
     }
@@ -24,7 +24,6 @@ export class MongoDB {
   async closeConnection() {
     try {
       await this.client.close();
-      console.log('Connection to MongoDB closed');
     } catch (error) {
       console.error('Error closing MongoDB connection:', error);
     }
