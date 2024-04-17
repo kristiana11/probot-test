@@ -35,7 +35,8 @@ export class MongoDB {
             _id: userName,
             user_data: {
                 xp: 0,
-                points: 0
+                level: 0,
+                gitcoins: 0
             }
         };
         try {

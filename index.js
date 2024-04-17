@@ -27,6 +27,7 @@ export default (app) => {
 
     app.on("issue_comment.created", async (context) => {
         const user = context.payload.comment.user.login;
+        console.log("debug");
         if (context.payload.comment.user.type === 'Bot') {
             return;
         }
