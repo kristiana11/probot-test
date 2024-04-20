@@ -363,4 +363,31 @@ export class MongoDB {
             console.error('Error generating SVG:', error);
         }
     }
+
+    async updateReadmeWithSVG(user) {
+        try {
+            // Read the existing README content
+            const readmePath = 'README.md';
+            let readmeContent = fs.readFileSync(readmePath, 'utf-8');
+    
+            // Generate the SVG file name
+            const svgFileName = `${user}_stats.svg`;
+    
+            // Construct the SVG image markdown
+            const svgMarkdown = `![User Stats](${svgFileName})`;
+    
+            // Find the placeholder in the README content
+            const placeholder = '<!-- USER_STATS_SVG -->';
+    
+            // Replace the placeholder with the SVG markdown
+            readmeContent = readmeContent.replace(placeholder, svgMarkdown);
+    
+            // Write the updated README content back to the file
+            fs.writeFileSync(readmePath, readmeContent, 'utf-8');
+    
+            console.log(`README updated with ${svgFileName}`);
+        } catch (error) {
+            console.error('Error updating README with SVG:', error);
+        }
+    }
 }
