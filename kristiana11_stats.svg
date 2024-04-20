@@ -1,0 +1,23 @@
+
+                <svg width="400" height="200">
+                
+            <style>
+            text {
+                font-family: Arial, sans-serif;
+                font-size: 16px;
+                fill: #333; /* Text color */
+            }
+            .label {
+                font-weight: bold;
+                fill: #666; /* Label color */
+            }
+            </style>
+            
+                <text class="label" x="10" y="30">XP:</text>
+                <text x="60" y="30">0</text>
+                <text class="label" x="10" y="60">Level:</text>
+                <text x="60" y="60">0</text>
+                <text class="label" x="10" y="90">Gitcoins:</text>
+                <text x="90" y="90">0</text>
+                </svg>
+            
