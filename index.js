@@ -68,7 +68,7 @@ export default (app) => {
                         db.generateSVG(user)
 
                         // Update README with user stats SVG
-                         await updateReadmeWithSVG(user);
+                         db.updateReadmeWithSVG(user);
 
                         break;
                     case 'display':
