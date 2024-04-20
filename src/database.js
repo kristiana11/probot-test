@@ -376,23 +376,3 @@ export class MongoDB {
         }
     }
 }
-
-// main
-async function main() {
-    const user =  'kristiana11';
-    const db = new MongoDB();
-    await db.connect();
-
-    // Download user data and print to file
-    await db.printUserDataToFile(user, 'userdata.json');
-
-    // Generate SVG for user stats
-    await db.generateSVG(user);
-
-    await db.closeConnection();
-}
-
-// Execute the main function
-main().catch(error => {
-    console.error('An error occurred:', error);
-});

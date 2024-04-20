@@ -61,6 +61,13 @@ export default (app) => {
                         status = await db.createUser(user)
                         if (status) { response = 'New user created!' }
                         else { response = 'Failed to create new user, user already exists' }
+                        
+                        // download user data and print into file
+                        await db.printUserDataToFile(user, 'userdata.json');
+
+                        // generate SVG
+                        db.generateSVG(user)
+
                         break;
                     case 'display':
                         response = await questFunctions.displayQuests(db, user);
