@@ -130,7 +130,7 @@
                                 text-anchor="middle" 
                                 class="username bold" 
                                 fill="#2f80ed">
-                                @ _id
+                                kristiana11
                             </text>
                         </g>
                     </g>
@@ -145,7 +145,7 @@
                                     x="18"
                                     y="12.5"
                                     data-testid="stars">
-                                    2
+                                    10
                                 </text>
                             </g>  
                         </g>
@@ -160,7 +160,7 @@
                                     x="35"
                                     y="12.5"
                                     data-testid="commits">
-                                    15
+                                    0
                                 </text>
                             </g>
                         </g>
@@ -174,7 +174,7 @@
                                     x="50"
                                     y="12.5"
                                     data-testid="prs">
-                                    200
+                                    0
                                 </text>
                             </g>
                         </g>

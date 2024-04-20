@@ -231,7 +231,7 @@ export class MongoDB {
                                 text-anchor="middle" 
                                 class="username bold" 
                                 fill="#2f80ed">
-                                @ _id
+                                ${userDocument._id}
                             </text>
                         </g>
                     </g>
@@ -246,7 +246,7 @@ export class MongoDB {
                                     x="18"
                                     y="12.5"
                                     data-testid="stars">
-                                    2
+                                    ${userDocument.user_data.xp}
                                 </text>
                             </g>  
                         </g>
@@ -261,7 +261,7 @@ export class MongoDB {
                                     x="35"
                                     y="12.5"
                                     data-testid="commits">
-                                    15
+                                    ${userDocument.user_data.level}
                                 </text>
                             </g>
                         </g>
@@ -275,7 +275,7 @@ export class MongoDB {
                                     x="50"
                                     y="12.5"
                                     data-testid="prs">
-                                    200
+                                    ${userDocument.user_data.gitcoins}
                                 </text>
                             </g>
                         </g>
