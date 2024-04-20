@@ -4,6 +4,8 @@
  */
 import { questFunctions } from './src/quest.js';
 import { MongoDB } from './src/database.js';
+import fs from 'fs';
+
 
 const db = new MongoDB();
 await db.connect();
@@ -61,12 +63,12 @@ export default (app) => {
                         status = await db.createUser(user)
                         if (status) { response = 'New user created!' }
                         else { response = 'Failed to create new user, user already exists' }
-                        
-                        // download user data and print into file
-                        await db.printUserDataToFile(user, 'userdata.json');
 
                         // generate SVG
                         db.generateSVG(user)
+
+                        // Update README with user stats SVG
+                         await updateReadmeWithSVG(user);
 
                         break;
                     case 'display':
@@ -100,6 +102,33 @@ export default (app) => {
     // https://probot.github.io/docs/development/
 
 };
+
+async function updateReadmeWithSVG(user) {
+    try {
+        // Read the existing README content
+        const readmePath = 'README.md';
+        let readmeContent = fs.readFileSync(readmePath, 'utf-8');
+
+        // Generate the SVG file name
+        const svgFileName = `${user}_stats.svg`;
+
+        // Construct the SVG image markdown
+        const svgMarkdown = `![User Stats](${svgFileName})`;
+
+        // Find the placeholder in the README content
+        const placeholder = '<!-- USER_STATS_SVG -->';
+
+        // Replace the placeholder with the SVG markdown
+        readmeContent = readmeContent.replace(placeholder, svgMarkdown);
+
+        // Write the updated README content back to the file
+        fs.writeFileSync(readmePath, readmeContent, 'utf-8');
+
+        console.log(`README updated with ${svgFileName}`);
+    } catch (error) {
+        console.error('Error updating README with SVG:', error);
+    }
+}
 
 // match and break down / command 
 function parseCommand(comment) {

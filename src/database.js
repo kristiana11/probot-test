@@ -78,18 +78,6 @@ export class MongoDB {
         }
     }
 
-    async printUserDataToFile(user, filename) {
-        try {
-            const userDocument = await this.collection.findOne({ _id: user });
-            console.log('Fetched user data:', userDocument);
-            const data = JSON.stringify(userDocument, null, 2);
-            await writeFileAsync(filename, data);
-            console.log(`User data for ${user} has been printed to ${filename}`);
-        } catch (error) {
-            console.error('Error printing user data to file:', error);
-        }
-    }
-
     async generateSVG(user) {
         try {
             const userDocument = await this.collection.findOne({ _id: user });
