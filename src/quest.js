@@ -168,7 +168,7 @@ async function displayQuests(db, user) {
 async function createQuestEnvironment(quest, task, context){
     var issueComment = '';
     // most will be creating an issue with multiple choice
-    // quest 1
+    // quest 1 TODO: use another repo, use API enpoint to find issue numbers, include link to issues in the project 
     if(quest === 'Q1'){ 
       // Find issue tracker
       if(task === 'T1'){
