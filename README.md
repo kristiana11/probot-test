@@ -30,8 +30,6 @@ docker run -e APP_ID=<app-id> -e PRIVATE_KEY=<pem-value> my-first-app
 Testing User Card Stats Here:<br>
 ![User Draft Stats](/userCards/template.svg)
 
-![User Stats](/kristiana11_stats.svg)
-
 ## Contributing
 
 If you have suggestions for how my-first-app could be improved, or want to report a bug, open an issue! We'd love all and any contributions.
