@@ -14,7 +14,7 @@
             </style>
             
                 <text class="label" x="10" y="30">XP:</text>
-                <text x="60" y="30">0</text>
+                <text x="60" y="30">10</text>
                 <text class="label" x="10" y="60">Level:</text>
                 <text x="60" y="60">0</text>
                 <text class="label" x="10" y="90">Gitcoins:</text>
