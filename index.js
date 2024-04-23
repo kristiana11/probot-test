@@ -66,9 +66,6 @@ export default (app) => {
                         // generate SVG
                         db.generateSVG(user)
 
-                        // Update README with user stats SVG
-                         db.updateReadmeWithSVG(user);
-
                         break;
                     case 'display':
                         response = await questFunctions.displayQuests(db, user);

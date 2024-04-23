@@ -359,6 +359,9 @@ export class MongoDB {
 
             await writeFileAsync(`user_stats.svg`, svgContent);
             console.log(`SVG file for ${user} stats has been generated.`);
+
+            // Update the README with SVG content after SVG file creation
+            await this.updateReadmeWithSVG(user);
         } catch (error) {
             console.error('Error generating SVG:', error);
         }
