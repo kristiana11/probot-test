@@ -378,7 +378,7 @@ export class MongoDB {
             let readmeContent = fs.readFileSync(readmePath, 'utf-8');
     
             // Generate the SVG file name
-            const svgFileName = `userStats.svg`;
+            const svgFileName = `$userStats.svg`;
     
             // Construct the SVG image markdown
             const svgMarkdown = `![User Stats](${svgFileName})`;
