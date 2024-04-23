@@ -63,6 +63,10 @@ export class MongoDB {
         const updateQuery = { $set: userData };
         try {
             await this.collection.updateOne(filterQuery, updateQuery, { upsert: true });
+
+            // when database updates, svg and readme does too
+            await this.generateSVG(userData._id);
+            await this.updateReadmeWithSVG(userData._id);
         } catch (error) {
             console.error('Error updating user data:', error);
         }
@@ -192,6 +196,7 @@ export class MongoDB {
                 role="img"
                 aria-labelledby="descId"
             >
+                <rect width="100%" height="100%" fill="white" />
                 <title id="titleId">User's Quest Stats</title>
                 ${styles}
                 <rect
