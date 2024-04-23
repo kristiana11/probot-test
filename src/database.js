@@ -384,7 +384,7 @@ export class MongoDB {
             const svgMarkdown = `![User Stats](${svgFileName})`;
     
             // Find the placeholder in the README content
-            const placeholder = '<!-- USER_STATS_SVG -->';
+            const placeholder = '![User Stats](userStats.svg)';
     
             // Replace the placeholder with the SVG markdown
             readmeContent = readmeContent.replace(placeholder, svgMarkdown);
