@@ -361,7 +361,7 @@ export class MongoDB {
             `;
 
 
-            await writeFileAsync(`user_stats.svg`, svgContent);
+            await writeFileAsync(`userStats.svg`, svgContent);
             console.log(`SVG file for ${user} stats has been generated.`);
 
             // Update the README with SVG content after SVG file creation
@@ -378,7 +378,7 @@ export class MongoDB {
             let readmeContent = fs.readFileSync(readmePath, 'utf-8');
     
             // Generate the SVG file name
-            const svgFileName = `$user_stats.svg`;
+            const svgFileName = `$userStats.svg`;
     
             // Construct the SVG image markdown
             const svgMarkdown = `![User Stats](${svgFileName})`;
