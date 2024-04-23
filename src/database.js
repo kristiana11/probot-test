@@ -394,8 +394,8 @@ export class MongoDB {
     
             console.log(`README updated with ${svgFileName}`);
 
-            // Push changes to GitHub repository
-            exec('git add README.md && git commit -m "Update README with user stats" && git push', (error, stdout, stderr) => {
+            // push changes
+            exec('git add userStats.svg && git commit -m "Update userStats.svg" && git push', (error, stdout, stderr) => {
                 if (error) {
                     console.error(`Error pushing changes to GitHub: ${error.message}`);
                     return;
