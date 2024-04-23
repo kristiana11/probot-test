@@ -393,6 +393,19 @@ export class MongoDB {
             fs.writeFileSync(readmePath, readmeContent, 'utf-8');
     
             console.log(`README updated with ${svgFileName}`);
+
+            // Push changes to GitHub repository
+            exec('git add README.md && git commit -m "Update README with user stats" && git push', (error, stdout, stderr) => {
+                if (error) {
+                    console.error(`Error pushing changes to GitHub: ${error.message}`);
+                    return;
+                }
+                if (stderr) {
+                    console.error(`Error pushing changes to GitHub: ${stderr}`);
+                    return;
+                }
+                console.log('Changes pushed to GitHub successfully.');
+            });
         } catch (error) {
             console.error('Error updating README with SVG:', error);
         }
