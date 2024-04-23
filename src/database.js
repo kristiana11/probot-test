@@ -206,7 +206,7 @@ export class MongoDB {
                     height="99%"
                     stroke="#e4e2e2"
                     width="449"
-                    fill="white"
+                    fill="#white"
                     stroke-opacity="1"
                 />
 
