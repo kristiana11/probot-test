@@ -196,7 +196,6 @@ export class MongoDB {
                 role="img"
                 aria-labelledby="descId"
             >
-                <rect width="100%" height="100%" fill="white" />
                 <title id="titleId">User's Quest Stats</title>
                 ${styles}
                 <rect
