@@ -66,7 +66,7 @@ export class MongoDB {
 
             // when database updates, svg and readme does too
             await this.generateSVG(userData._id);
-            await this.updateReadmeWithSVG(userData._id);
+            await this.commitAndPushChanges();
         } catch (error) {
             console.error('Error updating user data:', error);
         }
