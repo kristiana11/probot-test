@@ -372,16 +372,44 @@ export class MongoDB {
     }
 
     async commitAndPushChanges() {
-        exec('git add userStats.svg && git commit -m "Update userStats.svg" && git push', (error, stdout, stderr) => {
+        exec('git add userStats.svg', (error, stdout, stderr) => {
             if (error) {
-                console.error(`Error committing and pushing changes: ${error.message}`);
+                console.error(`Error adding userStats.svg to staging area: ${error.message}`);
                 return;
             }
             if (stderr) {
-                console.error(`Error committing and pushing changes: ${stderr}`);
+                console.error(`Error adding userStats.svg to staging area: ${stderr}`);
                 return;
             }
-            console.log('Changes committed and pushed successfully.');
+            console.log('userStats.svg added to staging area.');
+            
+            // Commit changes
+            exec('git commit -m "Update userStats.svg"', (error, stdout, stderr) => {
+                if (error) {
+                    console.error(`Error committing changes: ${error.message}`);
+                    return;
+                }
+                if (stderr) {
+                    console.error(`Error committing changes: ${stderr}`);
+                    return;
+                }
+                console.log('Changes committed.');
+
+                // Push changes
+                exec('git push', (error, stdout, stderr) => {
+                    if (error) {
+                        console.error(`Error pushing changes to GitHub: ${error.message}`);
+                        return;
+                    }
+                    if (stderr) {
+                        console.error(`Error pushing changes to GitHub: ${stderr}`);
+                        return;
+                    }
+                    console.log('Changes pushed to GitHub successfully.');
+                });
+            });
         });
+    } catch (error) {
+        console.error('Error updating README with SVG:', error);
     }
 }
