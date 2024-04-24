@@ -364,50 +364,24 @@ export class MongoDB {
             await writeFileAsync(`userStats.svg`, svgContent);
             console.log(`SVG file for ${user} stats has been generated.`);
 
-            // Update the README with SVG content after SVG file creation
-            await this.updateReadmeWithSVG(user);
+            // Update the repo with SVG content after SVG file creation
+            await this.commitAndPushChanges();
         } catch (error) {
             console.error('Error generating SVG:', error);
         }
     }
 
-    async updateReadmeWithSVG(user) {
-        try {
-            // Read the existing README content
-            const readmePath = 'README.md';
-            let readmeContent = fs.readFileSync(readmePath, 'utf-8');
-    
-            // Generate the SVG file name
-            const svgFileName = `/userStats.svg`;
-    
-            // Construct the SVG image markdown
-            const svgMarkdown = `![User Stats](${svgFileName})`;
-    
-            // Find the placeholder in the README content
-            const placeholder = '![User Stats](/userStats.svg)';
-    
-            // Replace the placeholder with the SVG markdown
-            readmeContent = readmeContent.replace(placeholder, svgMarkdown);
-    
-            // Write the updated README content back to the file
-            fs.writeFileSync(readmePath, readmeContent, 'utf-8');
-    
-            console.log(`README updated with ${svgFileName}`);
-
-            // push changes
-            exec('git add userStats.svg && git commit -m "Update userStats.svg" && git push', (error, stdout, stderr) => {
-                if (error) {
-                    console.error(`Error pushing changes to GitHub: ${error.message}`);
-                    return;
-                }
-                if (stderr) {
-                    console.error(`Error pushing changes to GitHub: ${stderr}`);
-                    return;
-                }
-                console.log('Changes pushed to GitHub successfully.');
-            });
-        } catch (error) {
-            console.error('Error updating README with SVG:', error);
-        }
+    async commitAndPushChanges() {
+        exec('git add userStats.svg && git commit -m "Update userStats.svg" && git push', (error, stdout, stderr) => {
+            if (error) {
+                console.error(`Error committing and pushing changes: ${error.message}`);
+                return;
+            }
+            if (stderr) {
+                console.error(`Error committing and pushing changes: ${stderr}`);
+                return;
+            }
+            console.log('Changes committed and pushed successfully.');
+        });
     }
 }
