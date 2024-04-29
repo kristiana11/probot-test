@@ -199,163 +199,112 @@ export class MongoDB {
                 <title id="titleId">User's Quest Stats</title>
                 ${styles}
                 <rect
-                    data-testid="card-bg"
-                    x="0.5"
-                    y="0.5"
-                    rx="4.5"
-                    height="99%"
-                    stroke="#e4e2e2"
-                    width="449"
-                    fill="white"
-                    stroke-opacity="1"
+                data-testid="card-bg"
+                x="0.5"
+                y="0.5"
+                rx="4.5"
+                height="99%"
+                stroke="#e4e2e2"
+                width="449"
+                fill="white"
+                stroke-opacity="1"
                 />
 
+
+
                 <!-- Displays User Stats -->
-                <g data-testid="main-card-body" transform="translate(0, 55)">  
+                <g data-testid="main-card-body" transform="translate(0, 75)">  
                     
-                    <g data-testid="rank-circle" transform="translate(365, 30)">
-                        <circle class="rank-circle-rim" cx="-300" cy="-20" r="50" />
-                        <circle class="rank-circle" cx="17" cy="-282" r="50" />
-                        <g class="rank-text">
-                            <text x="-292" y="40" 
-                                alignment-baseline="middle" 
-                                dominant-baseline="middle" 
-                                text-anchor="middle" 
-                                class="username bold" 
-                                fill="#2f80ed">
-                                ${userDocument._id}
-                            </text>
-                        </g>
+                <g data-testid="rank-circle" transform="translate(365, 30)">
+                    <circle class="rank-circle-rim" cx="-300" cy="-20" r="58" />
+                    <circle class="rank-circle" cx="17" cy="-282" r="58" />
+                    <g class="rank-text">
+                    <text x="-292" y="55" 
+                        alignment-baseline="middle" 
+                        dominant-baseline="middle" 
+                        text-anchor="middle" 
+                        class="username bold" 
+                        fill="#2f80ed">
+                        ${userDocument._id}
+                    </text>
                     </g>
-
-                    <!-- XP -->
-                    <svg x="4" y="80">
-                        <g transform="translate(0, -2)">
-                            <g class="stagger" style="animation-delay: 450ms" transform="translate(25, 0)">
-                                <text class="stat  bold"  y="12.5">XP:</text>
-                                <text
-                                    class="stat  bold"
-                                    x="18"
-                                    y="12.5"
-                                    data-testid="stars">
-                                    ${userDocument.user_data.xp}
-                                </text>
-                            </g>  
-                        </g>
-
-                        <!-- Level -->
-                        <g transform="translate(0, 10)">
-                            <g class="stagger" style="animation-delay: 600ms" transform="translate(25, 0)">
-                                
-                                <text class="stat  bold"  y="12.5">LEVEL:</text>
-                                <text
-                                    class="stat  bold"
-                                    x="35"
-                                    y="12.5"
-                                    data-testid="commits">
-                                    ${userDocument.user_data.level}
-                                </text>
-                            </g>
-                        </g>
-
-                        <!-- Gitcoins -->
-                        <g transform="translate(-1, 22)">
-                            <g class="stagger" style="animation-delay: 750ms" transform="translate(25, 0)">
-                                <text class="stat  bold"  y="12.5">GITCOINS:</text>
-                                <text
-                                    class="stat  bold"
-                                    x="50"
-                                    y="12.5"
-                                    data-testid="prs">
-                                    ${userDocument.user_data.gitcoins}
-                                </text>
-                            </g>
-                        </g>
-
-                    </svg>
+                </g>
                 </g>
 
-                <!-- Levels Menu -->
+                <!-- Quests Completed -->
                 <g data-testid="main-card-body" transform="translate(0, 55)">
-                    <svg x="130" y="-29" width="215" height="200">
+                <svg x="130" y="-29" width="550" height="550">
 
-                        <!-- width=10% is the 0% of bar-->
-                        <!-- width=77% is the all of bar-->
+                    <!-- width=3% is the 0% of bar-->
+                    <!-- width=33% is the all of bar-->
+                    <!-- 30 -->
 
-                        <!-- Level 1 Progression Bar -->
-                        <text x="-1" y="15" class="levels bold" fill="black">Level 1</text>
-                        <rect x="47" y="0" width="165" height="20" fill="white" rx="10" stroke="black" stroke-width="2"/>
-                        <rect x="49" y="2.5" width="20%" height="15.5" fill="#2f80ed" rx="10" />
-                        <text x="172" y="12" fill="black" dominant-baseline="middle">10%</text>
-                        
-                        <!-- Level 2 Progression Bar -->
-                        <text x="-1" y="45" class="levels bold" fill="black">Level 2</text>
-                        <rect x="47" y="30" width="165" height="20" fill="white" rx="10" stroke="black" stroke-width="2"/>
-                        <rect x="49" y="32.5" width="10%" height="15.5" fill="#2f80ed" rx="10" />
-                        <text x="172" y="42" fill="black" dominant-baseline="middle">0%</text>
-
-                        <!-- Level 3 Progression Bar -->
-                        <text x="-1" y="75" class="levels bold" fill="black">Level 3</text>
-                        <rect x="47" y="60" width="165" height="20" fill="white" rx="10" stroke="black" stroke-width="2"/>
-                        <rect x="49" y="62.5" width="10%" height="15.5" fill="#2f80ed" rx="10" />
-                        <text x="172" y="72" fill="black" dominant-baseline="middle">0%</text>
-
-                        <!-- Level 4 Progression Bar -->
-                        <text x="-1" y="105" class="levels bold" fill="black">Level 4</text>
-                        <rect x="47" y="90" width="165" height="20" fill="white" rx="10" stroke="black" stroke-width="2"/>
-                        <rect x="49" y="92.5" width="10%" height="15.5" fill="#2f80ed" rx="10" />
-                        <text x="172" y="102" fill="black" dominant-baseline="middle">0%</text>
-
-                        <!-- Level 5 Progression Bar -->
-                        <text x="-1" y="135" class="levels bold" fill="black">Level 5</text>
-                        <rect x="47" y="120" width="165" height="20" fill="white" rx="10" stroke="black" stroke-width="2"/>
-                        <rect x="49" y="122.5" width="10%" height="15.5" fill="#2f80ed" rx="10" />
-                        <text x="172" y="132" fill="black" dominant-baseline="middle">0%</text>
-                    </svg>
-                </g>
-
-                <!-- Medals Title -->
-                <g data-testid="card-title" transform="translate(375, 18)">
-                    <g transform="translate(0, 0)">
+                    <!-- Level -->
+                    <g transform="translate(97, -5)">
+                    <g class="stagger" style="animation-delay: 750ms" transform="translate(25, 0)">
+                        <text class="stat  bold"  y="12.5">📊LEVEL:</text>
                         <text
-                            x="0"
-                            y="0"
-                            class="levels"
-                            data-testid="header">
-                            Medals
+                        class="stat  bold"
+                        x="41"
+                        y="12.5"
+                        data-testid="prs">
+                        ${userDocument.user_data.level}
                         </text>
                     </g>
-                </g>
+                    </g>
 
-                <!-- Medals -->
-                <g data-testid="main-card-body" transform="translate(0, 55)">
-                    <svg x="350" y="-180" width="225" height="300">
 
-                        <!-- Level 1 Medals -->
-                        <circle cx="14" cy="160" r="13" fill="gold" stroke="black" stroke-width="2"/>
-                        <circle cx="45" cy="160" r="13" fill="white" stroke="black" stroke-width="2"/>
-                        <circle cx="76" cy="160" r="13" fill="white" stroke="black" stroke-width="2"/>
+                    <!-- XP -->
+                    <g transform="translate(165, -5)">
+                    <g class="stagger" style="animation-delay: 750ms" transform="translate(25, 0)">
+                        <text class="stat  bold"  y="12.5">✨XP:</text>
+                        <text
+                        class="stat  bold"
+                        x="26"
+                        y="12.5"
+                        data-testid="prs">
+                        ${userDocument.user_data.xp}
+                        </text>
+                    </g>
+                    </g>
 
-                        <!-- Level 2 Medals -->
-                        <circle cx="14" cy="190" r="13" fill="white" stroke="black" stroke-width="2"/>
-                        <circle cx="45" cy="190" r="13" fill="white" stroke="black" stroke-width="2"/>
-                        <circle cx="76" cy="190" r="13" fill="white" stroke="black" stroke-width="2"/>
+                    <!-- Gitcoins -->
+                    <g transform="translate(215, -5)">
+                    <g class="stagger" style="animation-delay: 750ms" transform="translate(25, 0)">
+                        <text class="stat  bold"  y="12.5">GITCOINS:</text>
+                        <text
+                        class="stat  bold"
+                        x="50"
+                        y="12.5"
+                        data-testid="prs">
+                        200
+                        </text>
+                    </g>
+                    </g>
 
-                        <!-- Level 3 Medals -->
-                        <circle cx="14" cy="220" r="13" fill="white" stroke="black" stroke-width="2"/>
-                        <circle cx="45" cy="220" r="13" fill="white" stroke="black" stroke-width="2"/>
-                        <circle cx="76" cy="220" r="13" fill="white" stroke="black" stroke-width="2"/>
 
-                        <!-- Level 4 Medals -->
-                        <circle cx="14" cy="250" r="13" fill="white" stroke="black" stroke-width="2"/>
-                        <circle cx="45" cy="250" r="13" fill="white" stroke="black" stroke-width="2"/>
-                        <circle cx="76" cy="250" r="13" fill="white" stroke="black" stroke-width="2"/>
 
-                        <!-- Level 5 Medals -->
-                        <circle cx="14" cy="280" r="13" fill="white" stroke="black" stroke-width="2"/>
-                        <circle cx="45" cy="280" r="13" fill="white" stroke="black" stroke-width="2"/>
-                        <circle cx="76" cy="280" r="13" fill="white" stroke="black" stroke-width="2"/>
-                    </svg>
+                    <!-- Quests Completed -->
+                    <text x="2" y="36" class="levels bold" fill="black">Quests Completed</text>
+                    <rect x="120" y="20" width="185" height="25" fill="white" rx="10" stroke="black" stroke-width="2"/>
+                    <rect x="123" y="22" width="3%" height="20" fill="#2f80ed" rx="10" />
+                    <text x="265" y="35" fill="black" dominant-baseline="middle">0%</text>
+
+                    <!-- Current Progress -->
+                    <text x="2" y="70" class="levels bold" fill="black">Current Progress</text>
+                    <rect x="120" y="55" width="188" height="25" fill="white" rx="10" stroke="black" stroke-width="2"/>
+                    <rect x="123" y="57" width="3%" height="20" fill="#2f80ed" rx="10" />
+                    <text x="265" y="70" fill="black" dominant-baseline="middle">0%</text>
+
+                    <!-- Streak  -->
+                    <text x="2" y="105" class="levels bold" fill="black">Streak</text>
+                    <rect x="120" y="90" width="188" height="25" fill="white" rx="10" stroke="black" stroke-width="2"/>
+                    <rect x="123" y="92" width="3%" height="20" fill="#2f80ed" rx="10" />
+                    <text x="265" y="105" fill="black" dominant-baseline="middle">0%</text>
+
+                    <!-- Streak  -->
+                    <text x="2" y="145" class="levels bold" fill="black">Badges</text>
+                    <rect x="120" y="125" width="188" height="25" fill="white" rx="10" stroke="black" stroke-width="2"/>
                 </g>
             </svg>
             `;
