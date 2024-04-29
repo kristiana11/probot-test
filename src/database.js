@@ -225,7 +225,7 @@ export class MongoDB {
                         text-anchor="middle" 
                         class="username bold" 
                         fill="#2f80ed">
-                        ${userDocument._id}
+                        @username
                     </text>
                     </g>
                 </g>
@@ -248,7 +248,7 @@ export class MongoDB {
                         x="41"
                         y="12.5"
                         data-testid="prs">
-                        ${userDocument.user_data.level}
+                        100
                         </text>
                     </g>
                     </g>
@@ -263,7 +263,7 @@ export class MongoDB {
                         x="26"
                         y="12.5"
                         data-testid="prs">
-                        ${userDocument.user_data.xp}
+                        100
                         </text>
                     </g>
                     </g>
@@ -305,6 +305,7 @@ export class MongoDB {
                     <!-- Streak  -->
                     <text x="2" y="145" class="levels bold" fill="black">Badges</text>
                     <rect x="120" y="125" width="188" height="25" fill="white" rx="10" stroke="black" stroke-width="2"/>
+                    
                 </g>
             </svg>
             `;
