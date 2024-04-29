@@ -214,21 +214,20 @@ export class MongoDB {
 
                 <!-- Displays User Stats -->
                 <g data-testid="main-card-body" transform="translate(0, 75)">  
-                    
-                <g data-testid="rank-circle" transform="translate(365, 30)">
-                    <circle class="rank-circle-rim" cx="-300" cy="-20" r="58" />
-                    <circle class="rank-circle" cx="17" cy="-282" r="58" />
-                    <g class="rank-text">
-                    <text x="-292" y="55" 
-                        alignment-baseline="middle" 
-                        dominant-baseline="middle" 
-                        text-anchor="middle" 
-                        class="username bold" 
-                        fill="#2f80ed">
-                        @username
-                    </text>
+                    <g data-testid="rank-circle" transform="translate(365, 30)">
+                        <circle class="rank-circle-rim" cx="-300" cy="-20" r="58" />
+                        <circle class="rank-circle" cx="17" cy="-282" r="58" />
+                        <g class="rank-text">
+                        <text x="-292" y="55" 
+                            alignment-baseline="middle" 
+                            dominant-baseline="middle" 
+                            text-anchor="middle" 
+                            class="username bold" 
+                            fill="#2f80ed">
+                            ${userDocument._id}
+                        </text>
+                        </g>
                     </g>
-                </g>
                 </g>
 
                 <!-- Quests Completed -->
@@ -241,45 +240,45 @@ export class MongoDB {
 
                     <!-- Level -->
                     <g transform="translate(97, -5)">
-                    <g class="stagger" style="animation-delay: 750ms" transform="translate(25, 0)">
-                        <text class="stat  bold"  y="12.5">📊LEVEL:</text>
-                        <text
-                        class="stat  bold"
-                        x="41"
-                        y="12.5"
-                        data-testid="prs">
-                        100
-                        </text>
-                    </g>
+                        <g class="stagger" style="animation-delay: 750ms" transform="translate(25, 0)">
+                            <text class="stat  bold"  y="12.5">📊LEVEL:</text>
+                            <text
+                            class="stat  bold"
+                            x="41"
+                            y="12.5"
+                            data-testid="prs">
+                            ${userDocument.user_data.level}
+                            </text>
+                        </g>
                     </g>
 
 
                     <!-- XP -->
                     <g transform="translate(165, -5)">
-                    <g class="stagger" style="animation-delay: 750ms" transform="translate(25, 0)">
-                        <text class="stat  bold"  y="12.5">✨XP:</text>
-                        <text
-                        class="stat  bold"
-                        x="26"
-                        y="12.5"
-                        data-testid="prs">
-                        100
-                        </text>
-                    </g>
+                        <g class="stagger" style="animation-delay: 750ms" transform="translate(25, 0)">
+                            <text class="stat  bold"  y="12.5">✨XP:</text>
+                            <text
+                            class="stat  bold"
+                            x="26"
+                            y="12.5"
+                            data-testid="prs">
+                            ${userDocument.user_data.xp}
+                            </text>
+                        </g>
                     </g>
 
                     <!-- Gitcoins -->
                     <g transform="translate(215, -5)">
-                    <g class="stagger" style="animation-delay: 750ms" transform="translate(25, 0)">
-                        <text class="stat  bold"  y="12.5">GITCOINS:</text>
-                        <text
-                        class="stat  bold"
-                        x="50"
-                        y="12.5"
-                        data-testid="prs">
-                        200
-                        </text>
-                    </g>
+                        <g class="stagger" style="animation-delay: 750ms" transform="translate(25, 0)">
+                            <text class="stat  bold"  y="12.5">GITCOINS:</text>
+                            <text
+                            class="stat  bold"
+                            x="50"
+                            y="12.5"
+                            data-testid="prs">
+                            ${userDocument.user_data.gitcoins}
+                            </text>
+                        </g>
                     </g>
 
 
@@ -308,7 +307,7 @@ export class MongoDB {
                     
                 </g>
             </svg>
-            `;
+        </svg>`;
 
 
             await writeFileAsync(`userStats.svg`, svgContent);
