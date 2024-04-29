@@ -305,8 +305,8 @@ export class MongoDB {
                     <text x="2" y="145" class="levels bold" fill="black">Badges</text>
                     <rect x="120" y="125" width="188" height="25" fill="white" rx="10" stroke="black" stroke-width="2"/>
                     
-                </g>
-            </svg>
+                </svg>
+            </g>
         </svg>`;
 
 
