@@ -259,7 +259,7 @@ export class MongoDB {
                             <text class="stat  bold"  y="12.5">✨XP:</text>
                             <text
                             class="stat  bold"
-                            x="26"
+                            x="30"
                             y="12.5"
                             data-testid="prs">
                             ${userDocument.user_data.xp}
