@@ -230,11 +230,11 @@ export class MongoDB {
                     </g>
                 </g>
 
-                    <g data-testid="main-card-body" transform="translate(0, 75)">  
-                        <g data-testid="rank-circle" transform="translate(15, -40)">
-                        <circle r="50" cx="50" cy="50" fill="lightblue" />
-                    </g>
+                <g data-testid="main-card-body" transform="translate(0, 75)">  
+                    <g data-testid="rank-circle" transform="translate(15, -40)">
+                    <circle r="50" cx="50" cy="50" fill="lightblue" />
                 </g>
+            </g>
 
                 <!-- Quests Completed -->
                 <g data-testid="main-card-body" transform="translate(0, 55)">
