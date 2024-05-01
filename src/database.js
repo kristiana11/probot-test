@@ -218,7 +218,7 @@ export class MongoDB {
                         <circle class="rank-circle-rim" cx="-300" cy="-20" r="58" />
                         <circle class="rank-circle" cx="17" cy="-282" r="58" />
                         <g class="rank-text">
-                        <text x="-292" y="55" 
+                        <text x="-295" y="55" 
                             alignment-baseline="middle" 
                             dominant-baseline="middle" 
                             text-anchor="middle" 
