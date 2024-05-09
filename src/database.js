@@ -292,19 +292,19 @@ export class MongoDB {
                     <!-- Quests Completed -->
                     <text x="2" y="36" class="levels bold" fill="black">Quests Completed</text>
                     <rect x="120" y="20" width="185" height="25" fill="white" rx="10" stroke="black" stroke-width="2"/>
-                    <rect x="123" y="22" width="3%" height="20" fill="#2f80ed" rx="10" />
+                    <rect x="123" y="22" width="3%" height="20" fill="#2f80ed" rx="10" class="questsCompletedBar"/>
                     <text x="265" y="35" fill="black" dominant-baseline="middle">0%</text>
 
                     <!-- Current Progress -->
                     <text x="2" y="70" class="levels bold" fill="black">Current Progress</text>
                     <rect x="120" y="55" width="188" height="25" fill="white" rx="10" stroke="black" stroke-width="2"/>
-                    <rect x="123" y="57" width="3%" height="20" fill="#2f80ed" rx="10" />
+                    <rect x="123" y="57" width="3%" height="20" fill="#2f80ed" rx="10" class="currentProgressBar"//>
                     <text x="265" y="70" fill="black" dominant-baseline="middle">0%</text>
 
                     <!-- Streak  -->
                     <text x="2" y="105" class="levels bold" fill="black">Streak</text>
                     <rect x="120" y="90" width="188" height="25" fill="white" rx="10" stroke="black" stroke-width="2"/>
-                    <rect x="123" y="92" width="3%" height="20" fill="#2f80ed" rx="10" />
+                    <rect x="123" y="92" width="3%" height="20" fill="#2f80ed" rx="10" class="streakBar"/>
                     <text x="265" y="105" fill="black" dominant-baseline="middle">0%</text>
 
                     <!-- Streak  -->
@@ -326,45 +326,65 @@ export class MongoDB {
         }
     }
 
-    async commitAndPushChanges() {
-        exec('git add userStats.svg', (error, stdout, stderr) => {
-            if (error) {
-                console.error(`Error adding userStats.svg to staging area: ${error.message}`);
-                return;
-            }
-            if (stderr) {
-                console.error(`Error adding userStats.svg to staging area: ${stderr}`);
-                return;
-            }
-            console.log('userStats.svg added to staging area.');
-            
-            // Commit changes
-            exec('git commit -m "Update userStats.svg"', (error, stdout, stderr) => {
-                if (error) {
-                    console.error(`Error committing changes: ${error.message}`);
-                    return;
-                }
-                if (stderr) {
-                    console.error(`Error committing changes: ${stderr}`);
-                    return;
-                }
-                console.log('Changes committed.');
-
-            // Push changes
-            exec('git push', (error, stdout, stderr) => {
-                if (error) {
-                    console.error(`Error pushing changes to GitHub: ${error.message}`);
-                    return;
-                }
-                if (stderr) {
-                    console.error(`Error pushing changes to GitHub: ${stderr}`);
-                    return;
-                }
-                console.log('Changes pushed to GitHub successfully.');
+    async commitAndPushChanges(context) {
+        const { owner, repo } = context.repo();
+    
+        try {
+            // Read the SVG file content
+            const svgContent = await util.promisify(fs.readFile)('userStats.svg', 'utf8');
+    
+            // Add file to staging area
+            const addResponse = await context.octokit.git.createBlob({
+                owner,
+                repo,
+                content: svgContent,
+                encoding: 'utf-8',
             });
-        });
-    });
-    } catch (error) {
-        console.error('Error updating README with SVG:', error);
+    
+            // Get the SHA of the blob
+            const blobSha = addResponse.data.sha;
+    
+            // Get the latest commit on the default branch
+            const latestCommit = await context.octokit.repos.getLatestCommit({
+                owner,
+                repo,
+            });
+    
+            // Create a new tree object with the updated SVG file
+            const treeResponse = await context.octokit.git.createTree({
+                owner,
+                repo,
+                base_tree: latestCommit.data.sha,
+                tree: [
+                    {
+                        path: 'userStats.svg',
+                        mode: '100644',
+                        type: 'blob',
+                        sha: blobSha,
+                    },
+                ],
+            });
+    
+            // Create a new commit with the updated tree
+            const commitResponse = await context.octokit.git.createCommit({
+                owner,
+                repo,
+                message: 'Update userStats.svg',
+                tree: treeResponse.data.sha,
+                parents: [latestCommit.data.sha],
+            });
+    
+            // Update the default branch reference to point to the new commit
+            const updateRefResponse = await context.octokit.git.updateRef({
+                owner,
+                repo,
+                ref: 'heads/main', // Change this to the appropriate branch
+                sha: commitResponse.data.sha,
+            });
+    
+            console.log('Changes pushed to GitHub successfully:', updateRefResponse.data);
+        } catch (error) {
+            console.error('Error committing and pushing changes:', error);
+        }
     }
 }
